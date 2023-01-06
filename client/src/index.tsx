@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import mainTheme from "./themes/mainTheme";
+import "@fontsource/spirax";
+import "@fontsource/open-sans-condensed";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

@@ -2074,6 +2074,16 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/open-sans-condensed@^4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/open-sans-condensed/-/open-sans-condensed-4.5.5.tgz#63550b4da6009bdd43164905b4093a63992be88a"
+  integrity sha512-ah6DBSWgjWEG20tVJnvcUQ/8XTfnGpuOGK4HLTF91vtrGg7PyrdEMlao/O1+S4i+SzeuJCmf5Qbc3eWponBL3Q==
+
+"@fontsource/spirax@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/spirax/-/spirax-4.5.8.tgz#81cf4be190ab82943d37624b2848de2f04fea2d9"
+  integrity sha512-3N2g/N6wUUcZ7DSEapRLLn/Y2DdJ9jv9NJNDQhdtsGFx4qHqL3tMVjnZDwNGAKyJLSzZLlmUfukVjbZDGHXU8A==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"

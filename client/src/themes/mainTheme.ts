@@ -5,4 +5,18 @@ const config: ThemeConfig = {
   useSystemColorMode: false,
 };
 
-export default extendTheme({ config });
+export default extendTheme({
+  config,
+  fonts: {
+    heading: `'Spirax', sans-serif`,
+    body: `'Open Sans Condense', sans-serif`,
+  },
+  semanticTokens: {
+    colors: {
+      heading: {
+        default: "orange.400",
+        _dark: "orange.200",
+      },
+    },
+  },
+});
