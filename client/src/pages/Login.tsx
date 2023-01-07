@@ -3,7 +3,6 @@ import {
   Container,
   Divider,
   Flex,
-  FormControl,
   FormLabel,
   Heading,
   Image,
@@ -11,12 +10,70 @@ import {
   Text,
   useColorMode,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { Link, useNavigate } from "react-router-dom";
+import useCustomToast from "../hooks/useCustomToast";
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+type LoginResponse = {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  user: User;
+};
 
 const Login = () => {
   const { colorMode } = useColorMode();
+  const [cookie, setCookie] = useCookies(["token", "user"]);
+  const toast = useCustomToast();
+  const navigate = useNavigate();
+  const { mutate, isLoading, error } = useMutation({
+    mutationKey: "login",
+    mutationFn: async (credential): Promise<LoginResponse> => {
+      const res = await axios.post(
+        "http://localhost:8000/api/auth/login",
+        credential
+      );
+      return res.data;
+    },
+    onSuccess: (data) => {
+      setCookie("token", data.access_token, {
+        path: "/",
+        maxAge: data.expires_in - 100,
+      });
+      setCookie("user", data.user, {
+        path: "/",
+        maxAge: data.expires_in - 100,
+      });
+      toast("Login Success", "success");
+      navigate("/");
+    },
+  });
+  const { handleSubmit, register } = useForm();
+
+  const onSubmit = (e: any) => {
+    mutate(e);
+  };
+
+  if (error) {
+    toast((error as any).response.data.error, "error");
+  }
+
+  React.useEffect(() => {
+    if (cookie.user) {
+      navigate("/");
+    }
+  }, [cookie, navigate]);
 
   return (
     <Container
@@ -37,21 +94,37 @@ const Login = () => {
             <Flex justifyContent={"center"}>
               <Divider w={"25rem"} />
             </Flex>
-            <FormControl>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Flex flexDir={"column"} gap={3} p={10} align={"center"}>
                 <Flex flexDir={"column"} w={"25rem"}>
                   <FormLabel>Email: </FormLabel>
-                  <Input type={"email"} required />
+                  <Input
+                    type={"email"}
+                    id={"email-login"}
+                    required
+                    {...register("email")}
+                  />
                 </Flex>
                 <Flex flexDir={"column"} w={"25rem"}>
                   <FormLabel>Password: </FormLabel>
-                  <Input type={"password"} required />
+                  <Input
+                    type={"password"}
+                    id={"password-login"}
+                    required
+                    {...register("password")}
+                  />
                 </Flex>
-                <Button w={"25rem"} mt={3}>
+                <Button
+                  w={"25rem"}
+                  mt={3}
+                  type={"submit"}
+                  loadingText="Logging In"
+                  isLoading={isLoading}
+                >
                   Log In
                 </Button>
               </Flex>
-            </FormControl>
+            </form>
             <Flex justifyContent={"center"}>
               <Divider w={"25rem"} />
             </Flex>

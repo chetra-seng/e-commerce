@@ -8,16 +8,28 @@ import { BrowserRouter } from "react-router-dom";
 import mainTheme from "./themes/mainTheme";
 import "@fontsource/spirax";
 import "@fontsource/open-sans-condensed";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { CookiesProvider } from "react-cookie";
+import UserProvider from "./contexts/UserContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
     <ChakraProvider theme={mainTheme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <CookiesProvider>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <UserProvider>
+              <App />
+            </UserProvider>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </CookiesProvider>
     </ChakraProvider>
   </React.StrictMode>
 );

@@ -13,10 +13,19 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const Signup = () => {
   const { colorMode } = useColorMode();
+  const navigate = useNavigate();
+  const user = React.useContext(UserContext);
+
+  React.useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   return (
     <Container
