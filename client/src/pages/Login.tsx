@@ -40,6 +40,8 @@ const Login = () => {
   const { mutate, isLoading, error } = useMutation({
     mutationKey: "login",
     mutationFn: async (credential): Promise<LoginResponse> => {
+      // TO-DO: Security Vulnerability
+      // Exposed unencrypted password
       const res = await axios.post(
         "http://localhost:8000/api/auth/login",
         credential
@@ -100,7 +102,7 @@ const Login = () => {
                   <FormLabel>Email: </FormLabel>
                   <Input
                     type={"email"}
-                    id={"email-login"}
+                    id={"email"}
                     required
                     {...register("email")}
                   />
@@ -109,7 +111,7 @@ const Login = () => {
                   <FormLabel>Password: </FormLabel>
                   <Input
                     type={"password"}
-                    id={"password-login"}
+                    id={"password"}
                     required
                     {...register("password")}
                   />
