@@ -4,6 +4,8 @@ import {
   Divider,
   Flex,
   FormControl,
+  FormErrorMessage,
+  FormHelperText,
   FormLabel,
   Heading,
   Image,
@@ -15,11 +17,20 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { useForm } from "react-hook-form";
 
 const Signup = () => {
   const { colorMode } = useColorMode();
   const navigate = useNavigate();
   const user = React.useContext(UserContext);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  console.log(errors);
 
   React.useEffect(() => {
     if (user) {
@@ -49,25 +60,99 @@ const Signup = () => {
             <Flex justifyContent={"center"}>
               <Divider w={"25rem"} />
             </Flex>
-            <FormControl>
+            <FormControl
+              isInvalid={
+                errors.name ||
+                errors.email ||
+                errors.password ||
+                errors.confirmPassword
+                  ? true
+                  : false
+              }
+              as={"form"}
+              id={"register"}
+              onSubmit={handleSubmit((e) => {
+                console.log(e);
+              })}
+            >
               <Flex flexDir={"column"} gap={3} p={10} align={"center"}>
                 <Flex flexDir={"column"} w={"25rem"}>
                   <FormLabel>Name: </FormLabel>
-                  <Input type={"text"} required />
+                  <Input
+                    isInvalid={errors.name ? true : false}
+                    type={"text"}
+                    required
+                    {...register("name", {
+                      pattern: /^[a-zA-Z ]+$/,
+                    })}
+                    id="name"
+                  />
+                  {errors && errors.name ? (
+                    <FormErrorMessage>Invalid name</FormErrorMessage>
+                  ) : (
+                    <FormHelperText>Enter a valid name</FormHelperText>
+                  )}
                 </Flex>
                 <Flex flexDir={"column"} w={"25rem"}>
                   <FormLabel>Email: </FormLabel>
-                  <Input type={"email"} required />
+                  <Input
+                    // data-invalid={errors.email}
+                    isInvalid={errors.email ? true : false}
+                    {...register("email", {
+                      pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                    })}
+                    id={"email"}
+                  />
+                  {errors.email ? (
+                    <FormErrorMessage>Invalid email</FormErrorMessage>
+                  ) : (
+                    <FormHelperText>Enter a valid email address</FormHelperText>
+                  )}
                 </Flex>
                 <Flex flexDir={"column"} w={"25rem"}>
                   <FormLabel>Password: </FormLabel>
-                  <Input type={"password"} required />
+                  <Input
+                    isInvalid={errors.password ? true : false}
+                    type={"password"}
+                    required
+                    {...register("password", {
+                      pattern: /(?=.*[0-9])/,
+                    })}
+                    id={"password"}
+                  />
+                  {errors.password ? (
+                    <FormErrorMessage>Invalid password</FormErrorMessage>
+                  ) : (
+                    <FormHelperText>
+                      Password with 8 characters and a number
+                    </FormHelperText>
+                  )}
                 </Flex>
                 <Flex flexDir={"column"} w={"25rem"}>
                   <FormLabel>Confirm Password: </FormLabel>
-                  <Input type={"password"} required />
+                  <Input
+                    isInvalid={errors.confirm_password ? true : false}
+                    type={"password"}
+                    required
+                    {...register("confirm_password", {
+                      required: true,
+                      validate: (val: string) => {
+                        if (watch("password") !== val) {
+                          return "Password does not match";
+                        }
+                      },
+                    })}
+                    id={"confirm_password"}
+                  />
+                  {errors.confirm_password ? (
+                    <FormErrorMessage>
+                      Password does not matched
+                    </FormErrorMessage>
+                  ) : (
+                    <FormHelperText>Re-enter password</FormHelperText>
+                  )}
                 </Flex>
-                <Button w={"25rem"} mt={3}>
+                <Button w={"25rem"} mt={3} type={"submit"}>
                   Sign Up
                 </Button>
               </Flex>
