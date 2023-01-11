@@ -26,10 +26,15 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json(
+                ['error' => $validator->errors()]
+                , 422);
         }
         if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json([
+                'error' => ['code' => 1001,
+                'message' => "Unauthorized user"]
+        ], 401);
         }
         return $this->createNewToken($token);
     }
@@ -91,10 +96,10 @@ class AuthController extends Controller
      */
     protected function createNewToken($token){
         return response()->json([
-            'access_token' => $token,
+            'data'=>['access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'user' => auth()->user()]
         ]);
     }
 }
