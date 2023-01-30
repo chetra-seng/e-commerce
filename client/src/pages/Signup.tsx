@@ -52,8 +52,9 @@ const Signup = () => {
           flexDir={"row-reverse"}
           justifyContent={"center"}
           align={"center"}
+          
         >
-          <Flex flexDir={"column"} gap={2} w={"50%"}>
+          <Flex flexDir={"column"} gap={2} w={"50%"} >
             <Flex flexDir={"row"} align={"center"} justifyContent={"center"}>
               <Heading>Create an Account</Heading>
             </Flex>
@@ -167,7 +168,7 @@ const Signup = () => {
               </Link>
             </Flex>
           </Flex>
-          <Flex w={"50%"} bg={colorMode === "light" ? "gray.100" : "gray.400"}>
+          <Flex w={"50%"} bg={colorMode === "light" ? "gray.100" : "gray.400"} display={{base:'none,',lg:'block'}} >
             <Image
               src={colorMode === "light" ? "./signup.svg" : "./signup_dark.svg"}
             />

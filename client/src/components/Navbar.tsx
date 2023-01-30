@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Container,
+  extendTheme,
   Flex,
   Heading,
   IconButton,
@@ -36,7 +37,7 @@ import { UserContext } from "../contexts/UserContext";
 import { faker } from "@faker-js/faker";
 import { useCookies } from "react-cookie";
 import useCustomToast from "../hooks/useCustomToast";
-import MenuComponent from "./Menu";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -44,7 +45,14 @@ const Navbar = () => {
   const user: any = React.useContext(UserContext);
   const [, , removeCookie] = useCookies(["user", "token"]);
   const toast = useCustomToast();
-
+  const breakpoints = {
+    sm: "320px",
+    md: "768px",
+    lg: "960px",
+    xl: "1200px",
+    "2xl": "1536px",
+  };
+  const theme = extendTheme({ breakpoints });
   return (
     <>
       <Container maxW={"8xl"} py={2}>
@@ -62,13 +70,53 @@ const Navbar = () => {
               </Heading>
             </Flex>
           </Link>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              px={4}
+              py={2}
+              transition="all 0.2s"
+              borderRadius="md"
+              borderWidth="1px"
+              _hover={{ bg: "gray.100" }}
+              icon={<HamburgerIcon />}
+            />
 
-          <Flex flexDir={"row"}>
-            <Input w={"xl"} />
+            <MenuList>
+              <MenuGroup title="Category">
+                <hr />
+                <MenuItem fontWeight={"bold"}>Men Shoes</MenuItem>
+                <MenuItem fontWeight={"bold"}>Men Shirt</MenuItem>
+                <MenuItem fontWeight={"bold"}>Gaming</MenuItem>
+                <MenuItem fontWeight={"bold"}>Sports</MenuItem>
+                <MenuItem fontWeight={"bold"}>Electronic</MenuItem>
+                <MenuItem fontWeight={"bold"}>DIY</MenuItem>
+                <hr />
+
+                <MenuItem
+                  icon={<BiLogIn size={20} />}
+                  onClick={() => navigate("/login")}
+                  display={{ base: "flex", xl: "none" }}
+                >
+                  Log In
+                </MenuItem>
+                <MenuItem
+                  icon={<BiPlus size={20} />}
+                  onClick={() => navigate("/signup")}
+                  display={{ base: "flex", xl: "none" }}
+                >
+                  Sign Up
+                </MenuItem>
+              </MenuGroup>
+            </MenuList>
+          </Menu>
+
+          <Flex flexDir={"row"} display={{ base: "none", xl: "flex" }}>
+            <Input w={"lg"} />
             <Box
               as={"button"}
               className={
-                "bg-orange-400 hover:bg-orange-300 dark:bg-orange-200 flex justify-center items-center rounded-lg"
+                "bg-orange-400 hover:bg-orange-300 dark:bg-orange-200 flex justify-center items-center rounded-r-lg"
               }
               w={"14"}
               h={"10"}
@@ -76,7 +124,12 @@ const Navbar = () => {
               <BiSearch size={25} />
             </Box>
           </Flex>
-          <Flex flexDir={"row"} gap={10} align={"center"}>
+          <Flex
+            flexDir={"row"}
+            gap={10}
+            align={"center"}
+            display={{ base: "none", xl: "flex" }}
+          >
             <Box as="button" onClick={toggleColorMode}>
               {colorMode === "light" ? (
                 <BiMoon size={25} />
@@ -149,7 +202,6 @@ const Navbar = () => {
           </Flex>
         </Flex>
       </Container>
-      <MenuComponent/>
     </>
   );
 };

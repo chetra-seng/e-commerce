@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.17",
+    "@chakra-ui/pro-theme": "^0.0.63",
     "@chakra-ui/react": "^2.4.4",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
@@ -20,6 +22,8 @@
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
+    "react-head": "^3.4.2",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.41.3",
     "react-icons": "^4.7.1",
     "react-query": "^3.39.2",

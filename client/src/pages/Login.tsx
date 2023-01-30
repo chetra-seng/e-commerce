@@ -2,6 +2,7 @@ import {
   Button,
   Container,
   Divider,
+  extendTheme,
   Flex,
   FormLabel,
   Heading,
@@ -86,9 +87,9 @@ const Login = () => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 200 }}
     >
-      <Flex minH={"100vh"} flexDir={"column"} justifyContent={"center"}>
-        <Flex flexDir={"row"} justifyContent={"center"} align={"center"}>
-          <Flex flexDir={"column"} gap={2} w={"50%"}>
+      <Flex minH={"100vh"} flexDir={"column"} justifyContent={"center"}  >
+        <Flex flexDir={"row"} justifyContent={"center"} align={"center"} >
+          <Flex flexDir={"column"} gap={2} w={"50%"} >
             <Flex flexDir={"column"} align="center">
               <Image src="./logo.png" w={"20"} />
               <Heading>welcome back</Heading>
@@ -137,7 +138,7 @@ const Login = () => {
               </Link>
             </Flex>
           </Flex>
-          <Flex bg={colorMode === "light" ? "gray.100" : "gray.400"} w={"50%"}>
+          <Flex bg={colorMode === "light" ? "gray.100" : "gray.400"} w={"50%"}  display={{base:'none',lg:'block'}}>
             <Image
               src={colorMode === "light" ? "./login.svg" : "./login_dark.svg"}
             />
