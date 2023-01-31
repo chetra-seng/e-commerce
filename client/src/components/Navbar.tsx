@@ -37,8 +37,7 @@ import { UserContext } from "../contexts/UserContext";
 import { faker } from "@faker-js/faker";
 import { useCookies } from "react-cookie";
 import useCustomToast from "../hooks/useCustomToast";
-import { HamburgerIcon } from "@chakra-ui/icons";
-
+import { GoThreeBars } from 'react-icons/go';
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
@@ -79,7 +78,7 @@ const Navbar = () => {
               borderRadius="md"
               borderWidth="1px"
               _hover={{ bg: "gray.100" }}
-              icon={<HamburgerIcon />}
+              icon={<GoThreeBars />}
             />
 
             <MenuList>

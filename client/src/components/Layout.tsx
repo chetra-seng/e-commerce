@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => {
@@ -6,6 +7,7 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
     <>
       <Navbar />
       <div>{children}</div>
+      <Footer/>
     </>
   );
 };
