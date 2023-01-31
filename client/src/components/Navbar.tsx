@@ -37,7 +37,7 @@ import { UserContext } from "../contexts/UserContext";
 import { faker } from "@faker-js/faker";
 import { useCookies } from "react-cookie";
 import useCustomToast from "../hooks/useCustomToast";
-import { GoThreeBars } from 'react-icons/go';
+import { GoThreeBars } from "react-icons/go";
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
@@ -69,49 +69,22 @@ const Navbar = () => {
               </Heading>
             </Flex>
           </Link>
-          <Menu>
-            <MenuButton
-              as={IconButton}
-              px={4}
-              py={2}
-              transition="all 0.2s"
-              borderRadius="md"
-              borderWidth="1px"
-              _hover={{ bg: "gray.100" }}
-              icon={<GoThreeBars />}
-            />
-
-            <MenuList>
-              <MenuGroup title="Category">
-                <hr />
-                <MenuItem fontWeight={"bold"}>Men Shoes</MenuItem>
-                <MenuItem fontWeight={"bold"}>Men Shirt</MenuItem>
-                <MenuItem fontWeight={"bold"}>Gaming</MenuItem>
-                <MenuItem fontWeight={"bold"}>Sports</MenuItem>
-                <MenuItem fontWeight={"bold"}>Electronic</MenuItem>
-                <MenuItem fontWeight={"bold"}>DIY</MenuItem>
-                <hr />
-
-                <MenuItem
-                  icon={<BiLogIn size={20} />}
-                  onClick={() => navigate("/login")}
-                  display={{ base: "flex", xl: "none" }}
-                >
-                  Log In
-                </MenuItem>
-                <MenuItem
-                  icon={<BiPlus size={20} />}
-                  onClick={() => navigate("/signup")}
-                  display={{ base: "flex", xl: "none" }}
-                >
-                  Sign Up
-                </MenuItem>
-              </MenuGroup>
-            </MenuList>
-          </Menu>
-
+          <Flex className="">
+            <ul className="px-2 text-sm hover:text-gray-500">
+              <Link to={""}>Popular for Men</Link>
+            </ul>
+            <ul className="px-2 text-sm hover:text-gray-500">
+              <Link to={""}>For Women</Link>
+            </ul>
+            <ul className="px-2 text-sm hover:text-gray-500">
+              <Link to={""}>In Trending</Link>
+            </ul>
+            <ul className="px-2 text-sm hover:text-gray-500">
+              <Link to={""}>Most Popular</Link>
+            </ul>
+          </Flex>
           <Flex flexDir={"row"} display={{ base: "none", xl: "flex" }}>
-            <Input w={"lg"} />
+            <Input w={"50"} />
             <Box
               as={"button"}
               className={
@@ -199,6 +172,47 @@ const Navbar = () => {
               </Menu>
             )}
           </Flex>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              px={4}
+              py={2}
+              transition="all 0.2s"
+              borderRadius="md"
+              borderWidth="1px"
+              _hover={{ bg: "gray.100" }}
+              icon={<GoThreeBars />}
+              display={{ base: "flex", xl: "none" }}
+            />
+
+            <MenuList>
+              <MenuGroup title="Category">
+                <hr />
+                <MenuItem fontWeight={"bold"}>Men Shoes</MenuItem>
+                <MenuItem fontWeight={"bold"}>Men Shirt</MenuItem>
+                <MenuItem fontWeight={"bold"}>Gaming</MenuItem>
+                <MenuItem fontWeight={"bold"}>Sports</MenuItem>
+                <MenuItem fontWeight={"bold"}>Electronic</MenuItem>
+                <MenuItem fontWeight={"bold"}>DIY</MenuItem>
+                <hr />
+
+                <MenuItem
+                  icon={<BiLogIn size={20} />}
+                  onClick={() => navigate("/login")}
+                  display={{ base: "flex", xl: "none" }}
+                >
+                  Log In
+                </MenuItem>
+                <MenuItem
+                  icon={<BiPlus size={20} />}
+                  onClick={() => navigate("/signup")}
+                  display={{ base: "flex", xl: "none" }}
+                >
+                  Sign Up
+                </MenuItem>
+              </MenuGroup>
+            </MenuList>
+          </Menu>
         </Flex>
       </Container>
     </>
