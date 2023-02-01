@@ -13,6 +13,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { BiChat, BiLike, BiShare } from "react-icons/bi";
+import Head from "./Head";
 
 const ProductCategory = () => {
   return (

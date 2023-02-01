@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Container,
+  extendTheme,
   Flex,
   Heading,
   IconButton,
@@ -36,6 +37,7 @@ import { UserContext } from "../contexts/UserContext";
 import { faker } from "@faker-js/faker";
 import { useCookies } from "react-cookie";
 import useCustomToast from "../hooks/useCustomToast";
+import { GoThreeBars } from "react-icons/go";
 import { Select } from "@chakra-ui/react";
 
 const Navbar = () => {
@@ -44,7 +46,14 @@ const Navbar = () => {
   const user: any = React.useContext(UserContext);
   const [, , removeCookie] = useCookies(["user", "token"]);
   const toast = useCustomToast();
-
+  const breakpoints = {
+    sm: "320px",
+    md: "768px",
+    lg: "960px",
+    xl: "1200px",
+    "2xl": "1536px",
+  };
+  const theme = extendTheme({ breakpoints });
   return (
     <Container maxW={"8xl"} py={2}>
       <Flex
@@ -135,12 +144,14 @@ const Navbar = () => {
                 <MenuItem
                   icon={<BiLogIn size={20} />}
                   onClick={() => navigate("/login")}
+                  display={{ base: "flex", xl: "none" }}
                 >
                   Log In
                 </MenuItem>
                 <MenuItem
                   icon={<BiPlus size={20} />}
                   onClick={() => navigate("/signup")}
+                  display={{ base: "flex", xl: "none" }}
                 >
                   Sign Up
                 </MenuItem>

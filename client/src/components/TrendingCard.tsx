@@ -22,7 +22,7 @@ import { MdShoppingCart } from "react-icons/md";
 const TrendingCard = () => {
   return (
     <Card maxW="sm">
-      {/* <CardBody> */}
+      <CardBody>
       <Icon className="shopicon" as={MdShoppingCart} boxSize={6}/>
       <Image
         src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -38,8 +38,8 @@ const TrendingCard = () => {
         </Text>
         <Text fontSize={"sm"}>Stock 120</Text>
       </Stack>
-      {/* </CardBody>
-      <Divider /> */}
+      </CardBody>
+      <Divider />
     </Card>
   );
 };

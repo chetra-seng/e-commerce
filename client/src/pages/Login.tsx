@@ -2,6 +2,7 @@ import {
   Button,
   Container,
   Divider,
+  extendTheme,
   Flex,
   FormLabel,
   Heading,
@@ -17,6 +18,7 @@ import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
+import Head from "../components/Head";
 import useCustomToast from "../hooks/useCustomToast";
 
 type User = {
@@ -78,73 +80,80 @@ const Login = () => {
   }, [cookie, navigate]);
 
   return (
-    <Container
-      minW={"6xl"}
-      as={motion.div}
-      transitionDuration={"200ms"}
-      initial={{ opacity: 0, x: -200 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 200 }}
-    >
-      <Flex minH={"100vh"} flexDir={"column"} justifyContent={"center"}>
-        <Flex flexDir={"row"} justifyContent={"center"} align={"center"}>
-          <Flex flexDir={"column"} gap={2} w={"50%"}>
-            <Flex flexDir={"column"} align="center">
-              <Image src="./logo.png" w={"20"} />
-              <Heading>welcome back</Heading>
-            </Flex>
-            <Flex justifyContent={"center"}>
-              <Divider w={"25rem"} />
-            </Flex>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Flex flexDir={"column"} gap={3} p={10} align={"center"}>
-                <Flex flexDir={"column"} w={"25rem"}>
-                  <FormLabel>Email: </FormLabel>
-                  <Input
-                    type={"email"}
-                    id={"email"}
-                    required
-                    {...register("email")}
-                  />
-                </Flex>
-                <Flex flexDir={"column"} w={"25rem"}>
-                  <FormLabel>Password: </FormLabel>
-                  <Input
-                    type={"password"}
-                    id={"password"}
-                    required
-                    {...register("password")}
-                  />
-                </Flex>
-                <Button
-                  w={"25rem"}
-                  mt={3}
-                  type={"submit"}
-                  loadingText="Logging In"
-                  isLoading={isLoading}
-                >
-                  Log In
-                </Button>
+    <>
+      <Head title={"Login"} />
+      <Container
+        minW={"6xl"}
+        as={motion.div}
+        transitionDuration={"200ms"}
+        initial={{ opacity: 0, x: -200 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 200 }}
+      >
+        <Flex minH={"100vh"} flexDir={"column"} justifyContent={"center"}>
+          <Flex flexDir={"row"} justifyContent={"center"} align={"center"}>
+            <Flex flexDir={"column"} gap={2} w={"50%"}>
+              <Flex flexDir={"column"} align="center">
+                <Image src="./logo.png" w={"20"} />
+                <Heading>welcome back</Heading>
               </Flex>
-            </form>
-            <Flex justifyContent={"center"}>
-              <Divider w={"25rem"} />
+              <Flex justifyContent={"center"}>
+                <Divider w={"25rem"} />
+              </Flex>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Flex flexDir={"column"} gap={3} p={10} align={"center"}>
+                  <Flex flexDir={"column"} w={"25rem"}>
+                    <FormLabel>Email: </FormLabel>
+                    <Input
+                      type={"email"}
+                      id={"email"}
+                      required
+                      {...register("email")}
+                    />
+                  </Flex>
+                  <Flex flexDir={"column"} w={"25rem"}>
+                    <FormLabel>Password: </FormLabel>
+                    <Input
+                      type={"password"}
+                      id={"password"}
+                      required
+                      {...register("password")}
+                    />
+                  </Flex>
+                  <Button
+                    w={"25rem"}
+                    mt={3}
+                    type={"submit"}
+                    loadingText="Logging In"
+                    isLoading={isLoading}
+                  >
+                    Log In
+                  </Button>
+                </Flex>
+              </form>
+              <Flex justifyContent={"center"}>
+                <Divider w={"25rem"} />
+              </Flex>
+              <Flex flexDir={"row"} justifyContent={"center"} gap={3}>
+                <Text>Don't have an account?</Text>
+                <Link to={"/signup"}>
+                  <Text>Sign Up</Text>
+                </Link>
+              </Flex>
             </Flex>
-            <Flex flexDir={"row"} justifyContent={"center"} gap={3}>
-              <Text>Don't have an account?</Text>
-              <Link to={"/signup"}>
-                <Text>Sign Up</Text>
-              </Link>
+            <Flex
+              bg={colorMode === "light" ? "gray.100" : "gray.400"}
+              w={"50%"}
+              display={{ base: "none", lg: "block" }}
+            >
+              <Image
+                src={colorMode === "light" ? "./login.svg" : "./login_dark.svg"}
+              />
             </Flex>
-          </Flex>
-          <Flex bg={colorMode === "light" ? "gray.100" : "gray.400"} w={"50%"}>
-            <Image
-              src={colorMode === "light" ? "./login.svg" : "./login_dark.svg"}
-            />
           </Flex>
         </Flex>
-      </Flex>
-    </Container>
+      </Container>
+    </>
   );
 };
 

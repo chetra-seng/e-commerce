@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Head from "../components/Head";
 import Layout from "../components/Layout";
 import ProductCategory from "../components/ProductCategory";
 import { UserContext } from "../contexts/UserContext";
@@ -19,7 +21,7 @@ const Home = () => {
           <ProductCategory />
         </Grid>
       </Container>
-      <Container maxW={"8xl"}>
+      <Container maxW={"8xl"} mb={"20"}>
         <Text className="mt-10 mb-5" fontWeight={"bold"}>In Trending</Text>
         <Grid templateColumns="repeat(4, 1fr)" gap={8}>
           <TrendingCard />
