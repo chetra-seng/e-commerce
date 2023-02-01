@@ -16,13 +16,17 @@ import { BiChat, BiLike, BiShare } from "react-icons/bi";
 
 const ProductCategory = () => {
   return (
-    <Card maxW="md">
+    <Card maxW="md" borderTopRadius={"md"} borderBottomRadius={"md"}>
       <Image
+        borderTopRadius={"md"}
+        borderBottomRadius={"md"}
         objectFit="cover"
-        src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+        src="https://marvel-b1-cdn.bc0a.com/f00000000178855/florsheim.com.au/shop/resources/images/index/SS22-FLAU-Desktop-HomepageRefresh-Container2-min.jpg"
         alt="Chakra UI"
       />
-      <Text className="text">Hello</Text>
+      <Text className="text" fontWeight={"bold"}>
+        Men Shoes
+      </Text>
     </Card>
   );
 };

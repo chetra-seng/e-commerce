@@ -36,6 +36,7 @@ import { UserContext } from "../contexts/UserContext";
 import { faker } from "@faker-js/faker";
 import { useCookies } from "react-cookie";
 import useCustomToast from "../hooks/useCustomToast";
+import { Select } from "@chakra-ui/react";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -61,18 +62,26 @@ const Navbar = () => {
           </Flex>
         </Link>
 
-        <Flex flexDir={"row"}>
-          <Input w={"xl"} />
-          <Box
-            as={"button"}
-            className={
-              "bg-orange-400 hover:bg-orange-300 dark:bg-orange-200 flex justify-center items-center rounded-lg"
-            }
-            w={"14"}
-            h={"10"}
-          >
-            <BiSearch size={25} />
-          </Box>
+        <Flex flexDir={"row"} gap={"5"}>
+          <Select placeholder="Select option">
+            <option value="option1">Popular for men</option>
+            <option value="option2">For Women</option>
+            <option value="option3">In Trending</option>
+            <option value="option3">Most Popular</option>
+          </Select>
+          <Flex flexDir={"row"}>
+            <Input w={"lg"} />
+            <Box
+              as={"button"}
+              className={
+                "bg-orange-400 hover:bg-orange-300 dark:bg-orange-200 flex justify-center items-center rounded-lg"
+              }
+              w={"14"}
+              h={"10"}
+            >
+              <BiSearch size={25} />
+            </Box>
+          </Flex>
         </Flex>
         <Flex flexDir={"row"} gap={10} align={"center"}>
           <Box as="button" onClick={toggleColorMode}>
