@@ -19,6 +19,7 @@ const Home = () => {
           <ProductCategory />
           <ProductCategory />
         </Grid>
+        <h1>dfsgaiufgsdiufgsiadfiusdafiasdfggif</h1>
       </Container>
     </Layout>
   );
