@@ -65,7 +65,7 @@ const Navbar = () => {
             <Flex className="logo" gap={3} align={"center"}>
               <Image src="./logo.png" w={20} />
               <Heading size={"lg"} color={"heading"}>
-                Cool Commerce
+                Cool Ecommerce
               </Heading>
             </Flex>
           </Link>
@@ -109,9 +109,9 @@ const Navbar = () => {
                 <BiSun size={25} />
               )}
             </Box>
-            <Link to={"/wishlist"}>
+            {/* <Link to={"/wishlist"}>
               <BiHeart size={25} />
-            </Link>
+            </Link> */}
             <Link to={"/carts"}>
               <BiCart size={25} />
             </Link>
