@@ -11,7 +11,9 @@ const Home = () => {
   return (
     <Layout>
       <Container maxW={"8xl"} py={2}>
-        <h1>Product Categories</h1>
+        <Text className="mt-10 mb-5" fontWeight={"bold"}>
+          Product Categories
+        </Text>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
           <ProductCategory />
           <ProductCategory />
@@ -22,20 +24,20 @@ const Home = () => {
         </Grid>
       </Container>
       <Container maxW={"8xl"} mb={"20"}>
-          <Text className="mt-10 mb-5" fontWeight={"bold"}>
-            In Trending
-          </Text>
-          <Grid templateColumns="repeat(4, 1fr)" gap={8}>
-            <TrendingCard />
-            <TrendingCard />
-            <TrendingCard />
-            <TrendingCard />
-            <TrendingCard />
-            <TrendingCard />
-            <TrendingCard />
-            <TrendingCard />
-          </Grid>
-        </Container>
+        <Text className="mt-10 mb-5" fontWeight={"bold"}>
+          In Trending
+        </Text>
+        <Grid templateColumns="repeat(4, 1fr)" gap={8}>
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+        </Grid>
+      </Container>
     </Layout>
   );
 };
