@@ -41,4 +41,12 @@
   right: 10px;
   bottom: 10px;
 }
+.line {
+  border: 1px solid gray;
+}
 
+.shopicon{
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
