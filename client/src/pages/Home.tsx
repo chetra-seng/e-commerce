@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import ProductCategory from "../components/ProductCategory";
 import { UserContext } from "../contexts/UserContext";
 import { Container, Grid, GridItem, Text } from "@chakra-ui/react";
+import TrendingCard from "../components/TrendingCard";
 
 const Home = () => {
   return (
@@ -19,8 +20,22 @@ const Home = () => {
           <ProductCategory />
           <ProductCategory />
         </Grid>
-        <h1>dfsgaiufgsdiufgsiadfiusdafiasdfggif</h1>
       </Container>
+      <Container maxW={"8xl"} mb={"20"}>
+          <Text className="mt-10 mb-5" fontWeight={"bold"}>
+            In Trending
+          </Text>
+          <Grid templateColumns="repeat(4, 1fr)" gap={8}>
+            <TrendingCard />
+            <TrendingCard />
+            <TrendingCard />
+            <TrendingCard />
+            <TrendingCard />
+            <TrendingCard />
+            <TrendingCard />
+            <TrendingCard />
+          </Grid>
+        </Container>
     </Layout>
   );
 };
