@@ -36,6 +36,14 @@ const Home = () => {
           <TrendingCard />
           <TrendingCard />
           <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
+          <TrendingCard />
         </Grid>
       </Container>
     </Layout>
