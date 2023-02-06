@@ -10,7 +10,7 @@ import TrendingCard from "../components/TrendingCard";
 const Home = () => {
   return (
     <Layout>
-      <Container maxW={"8xl"} h={"680"}>
+      <Container maxW={"8xl"}>
         <Flex
           boxShadow="base"
           p="6"
@@ -18,8 +18,9 @@ const Home = () => {
           alignItems={"center"}
           justify={"space-between"}
           padding={"50"}
+          className='content'
         >
-          <div style={{ width: "300px" }}>
+          <div style={{ width: "300px" }} className='content-detail'>
             <Text className="text-center" fontWeight={"bold"} fontSize="3xl">
               Healine text
             </Text>
@@ -29,7 +30,7 @@ const Home = () => {
               nunc.
             </Text>
           </div>
-          <div className="max-w-3xl">
+          <div className="max-w-3xl img" >
             <img
               src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
               alt=""

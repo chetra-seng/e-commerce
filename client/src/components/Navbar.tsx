@@ -69,7 +69,7 @@ const Navbar = () => {
               </Heading>
             </Flex>
           </Link>
-          <Flex className="" fontWeight={"bold"}>
+          <Flex className="" fontWeight={"bold"} display={{ base: "none", xl: "flex" }}>
             <ul className="px-2 text-sm hover:text-gray-500">
               <Link to={""}>Popular for Men</Link>
             </ul>
