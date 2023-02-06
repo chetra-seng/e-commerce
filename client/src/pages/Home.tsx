@@ -12,7 +12,9 @@ const Home = () => {
     <Layout>
       <Container maxW={"8xl"} h={"680"}>
         <Flex
-          boxShadow='base' p='6' rounded='md'
+          boxShadow="base"
+          p="6"
+          rounded="md"
           alignItems={"center"}
           justify={"space-between"}
           padding={"50"}
@@ -38,7 +40,7 @@ const Home = () => {
       </Container>
 
       <Container maxW={"8xl"} py={2}>
-        <Text className="mt-10 mb-5" fontWeight={"bold"}>
+        <Text className="mt-10 mb-5" fontWeight={"bold"} fontSize="3xl">
           Product Categories
         </Text>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
@@ -50,8 +52,9 @@ const Home = () => {
           <ProductCategory />
         </Grid>
       </Container>
+
       <Container maxW={"8xl"} mb={"20"}>
-        <Text className="mt-10 mb-5" fontWeight={"bold"}>
+        <Text className="mt-10 mb-5" fontWeight={"bold"} fontSize="3xl">
           In Trending
         </Text>
         <Grid templateColumns="repeat(4, 1fr)" gap={8}>
