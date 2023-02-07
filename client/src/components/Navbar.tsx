@@ -60,6 +60,7 @@ const Navbar = () => {
           className={"w-full"}
           justify={"space-between"}
           align={"center"}
+         
         >
           <Link to={"/"}>
             <Flex className="logo" gap={3} align={"center"}>
@@ -112,7 +113,7 @@ const Navbar = () => {
             {/* <Link to={"/wishlist"}>
               <BiHeart size={25} />
             </Link> */}
-            <Link to={"/carts"}>
+            <Link to={"/shopcartpage"}>
               <BiCart size={25} />
             </Link>
             {user ? (
