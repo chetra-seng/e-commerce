@@ -20,7 +20,7 @@ const ProductCategory = () => {
   return (
     <>
       <Head title={"Home Page"} />
-      <Link to={"/"}>
+      <Link to={"/categorypage"}>
         <Card
           maxW="md"
           opacity={".9"}

@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 const TrendingCard = () => {
   return (
     <>
-      <Link to={"/"}>
+      <Link to={"/productdetail"}>
         <Card
           maxW="sm"
           _hover={{
