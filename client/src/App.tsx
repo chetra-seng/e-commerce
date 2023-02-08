@@ -7,6 +7,8 @@ import Signup from "./pages/Signup";
 import ProductDetail from "./pages/ProductDetail";
 import CategoryPage from "./pages/CategoryPage";
 import ShopCartPage from "./pages/ShopCartPage";
+import UserLoginPage from "./pages/User/UserLLogin";
+import DashBoardPage from "./pages/User/DashBoard";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
       <Route path="/productdetail" element={<ProductDetail/>}/>
       <Route path="/categorypage" element={<CategoryPage/>}/>
       <Route path="/shopcartpage" element={<ShopCartPage/>}/>
+      <Route path="/userloginpage" element={<UserLoginPage/>}/>
+      <Route path="/dashboardpage" element={<DashBoardPage/>}/>
     </Routes>
   );
 }

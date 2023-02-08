@@ -48,7 +48,7 @@ export default function ProductDetail() {
                 />
               </Stack>
             </div>
-            <div className="content-detail ml-20">
+            <div className="ml-20">
               <Text className="" fontWeight={"bold"} fontSize="3xl">
                 Product Detail
               </Text>
