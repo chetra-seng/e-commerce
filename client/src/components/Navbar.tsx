@@ -60,6 +60,7 @@ const Navbar = () => {
           className={"w-full"}
           justify={"space-between"}
           align={"center"}
+         
         >
           <Link to={"/"}>
             <Flex className="logo" gap={3} align={"center"}>
@@ -69,7 +70,7 @@ const Navbar = () => {
               </Heading>
             </Flex>
           </Link>
-          <Flex className="">
+          <Flex className="" fontWeight={"bold"} display={{ base: "none", xl: "flex" }}>
             <ul className="px-2 text-sm hover:text-gray-500">
               <Link to={""}>Popular for Men</Link>
             </ul>
@@ -112,7 +113,7 @@ const Navbar = () => {
             {/* <Link to={"/wishlist"}>
               <BiHeart size={25} />
             </Link> */}
-            <Link to={"/carts"}>
+            <Link to={"/shopcartpage"}>
               <BiCart size={25} />
             </Link>
             {user ? (
