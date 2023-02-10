@@ -19,7 +19,7 @@ export default function DeshboardSidebar() {
         <hr />
         <Flex flexDir={"column"} marginTop={"10"}>
           <Link to={"/dashboardpage"}>
-            <Box _hover={{ bgColor: "heading" }} py={5}>
+            <Box _hover={{ bgColor: "heading" }} py={5} _selected={{bgColor: "heading"}} >
               <Flex align={"center"} marginLeft={"10"}>
                 <AiOutlineDashboard size={35} style={{ marginRight: "10" }} />
                 <Text fontWeight={"bold"} fontSize="xl">
