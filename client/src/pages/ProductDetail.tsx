@@ -1,4 +1,5 @@
 import { Button, Container, Flex, Stack, Text, Image, Grid } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import Head from "../components/Head";
 import Layout from "../components/Layout";
 import TrendingCard from "../components/TrendingCard";
@@ -8,7 +9,11 @@ export default function ProductDetail() {
     <>
       <Head title={"ProductDetail"} />
       <Layout>
-        <Container maxW={"8xl"}>
+        <Container maxW={"8xl"} as={motion.div}
+        transitionDuration={"200ms"}
+        initial={{ opacity: 0, x: -200 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 200 }}>
           <Flex p="6" rounded="md" justify={"center"} className="">
             <div className="max-w-3xl img mr-20">
               <img
