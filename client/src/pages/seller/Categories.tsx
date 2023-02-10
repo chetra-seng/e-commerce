@@ -48,6 +48,7 @@ export default function CategoriesPage() {
               onClose={onClose}
               isOpen={isOpen}
               isCentered
+              
             >
               <AlertDialogOverlay />
 
