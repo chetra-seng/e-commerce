@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 } */
+.text {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.line {
+  border: 1px solid gray;
+}
+
+.shopicon {
+  position: absolute;
+  right: 30px;
+  background: orange;
+  border-radius: 50%;
+  padding: 3px;
+}
+@media screen and ( max-width : 1300px) {
+ .content{
+  flex-direction: column-reverse;
+  position: relative;
+  padding: 0;
+ }
+ .content-detail{
+  position: absolute;
+  bottom: -20%;
+  text-align: center;
+  font-size: 20px;
+  
+  }  
+  
+ }
