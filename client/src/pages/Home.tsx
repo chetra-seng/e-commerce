@@ -22,7 +22,7 @@ const Home = () => {
         >
           <div style={{ width: "300px" }} className='content-detail'>
             <Text className="text-center" fontWeight={"bold"} fontSize="3xl">
-              Healine text
+             WHAT EVER YOU WANT TO SAY...
             </Text>
             <Text className="text-center">
               Lorem ipsum dolor sit amet consectetur. Eleifend luctus placerat
