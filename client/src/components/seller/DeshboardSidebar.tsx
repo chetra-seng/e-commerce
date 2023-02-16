@@ -2,7 +2,6 @@ import {
   Avatar,
   Box,
   Button,
-  Container,
   Flex,
   Heading,
   Image,
@@ -95,35 +94,35 @@ export default function DeshboardSidebar() {
         </Flex>
       </Box>
       <Box w="max" position="absolute" top={2} right="120px">
-      <Menu>
-        <MenuButton as={Button} variant={"ghost"}>
-          <Flex gap={2} alignItems={"center"}>
-            <Avatar src={faker.image.people()} size={"sm"} />
-            {user.name}
-            <BiDownArrow />
-          </Flex>
-        </MenuButton>
-        <MenuList w={15}>
-          <MenuGroup title="Profile">
-            <MenuItem icon={<BiUser size={20} />}>View Profile</MenuItem>
-          </MenuGroup>
-          <MenuGroup title="Acccount">
-            <MenuItem icon={<BiLock size={20} />}>Change Password</MenuItem>
-            <MenuItem
-              icon={<BiLogOut size={20} />}
-              onClick={() => {
-                removeCookie("token");
-                removeCookie("user");
-                removeCookie("role");
-                toast("Logout Success", "success");
-                navigate("/");
-              }}
-            >
-              Log Out
-            </MenuItem>
-          </MenuGroup>
-        </MenuList>
-      </Menu>
+        <Menu>
+          <MenuButton as={Button} variant={"ghost"}>
+            <Flex gap={2} alignItems={"center"}>
+              <Avatar src={faker.image.people()} size={"sm"} />
+              {user.name}
+              <BiDownArrow />
+            </Flex>
+          </MenuButton>
+          <MenuList w={15}>
+            <MenuGroup title="Profile">
+              <MenuItem icon={<BiUser size={20} />}>View Profile</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="Acccount">
+              <MenuItem icon={<BiLock size={20} />}>Change Password</MenuItem>
+              <MenuItem
+                icon={<BiLogOut size={20} />}
+                onClick={() => {
+                  removeCookie("token");
+                  removeCookie("user");
+                  removeCookie("role");
+                  toast("Logout Success", "success");
+                  navigate("/");
+                }}
+              >
+                Log Out
+              </MenuItem>
+            </MenuGroup>
+          </MenuList>
+        </Menu>
       </Box>
     </>
   );

@@ -1,23 +1,12 @@
 import {
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  Flex,
-  Avatar,
-  Box,
-  Heading,
   Text,
-  IconButton,
   Image,
-  Button,
   Icon,
   Stack,
   Divider,
-  ButtonGroup,
-  background,
 } from "@chakra-ui/react";
-import { BiChat, BiLike, BiShare } from "react-icons/bi";
 import { MdShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
 
@@ -39,7 +28,7 @@ const TrendingCard = () => {
                 as={MdShoppingCart}
                 boxSize={6}
                 _hover={{ textColor: "gray.600" }}
-                margin={'2'}
+                margin={"2"}
               />
             </Link>
             <Image

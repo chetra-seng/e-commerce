@@ -19,12 +19,40 @@ function App() {
       <Route path="/" index element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/productdetail" element={<ProductDetail/>}/>
-      <Route path="/category" element={<CategoryPage/>}/>
-      <Route path="/shoppingcart" element={<ProtectedCustomer><ShopCartPage/></ProtectedCustomer>}/>
-      <Route path="/seller/dashboard" element={<ProtectedSeller><DashBoard/></ProtectedSeller>}/>
-      <Route path="/seller/categories" element={<ProtectedSeller><CategoriesSeller/></ProtectedSeller>}/>
-      <Route path="/seller/products" element={<ProtectedSeller><ProductsSeller/></ProtectedSeller>}/>
+      <Route path="/productdetail" element={<ProductDetail />} />
+      <Route path="/category" element={<CategoryPage />} />
+      <Route
+        path="/shoppingcart"
+        element={
+          <ProtectedCustomer>
+            <ShopCartPage />
+          </ProtectedCustomer>
+        }
+      />
+      <Route
+        path="/seller/dashboard"
+        element={
+          <ProtectedSeller>
+            <DashBoard />
+          </ProtectedSeller>
+        }
+      />
+      <Route
+        path="/seller/categories"
+        element={
+          <ProtectedSeller>
+            <CategoriesSeller />
+          </ProtectedSeller>
+        }
+      />
+      <Route
+        path="/seller/products"
+        element={
+          <ProtectedSeller>
+            <ProductsSeller />
+          </ProtectedSeller>
+        }
+      />
     </Routes>
   );
 }

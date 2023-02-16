@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Center,
-  Container,
-  Flex,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Image, Text } from "@chakra-ui/react";
 import Head from "../components/Head";
 import Layout from "../components/Layout";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -79,23 +71,28 @@ export default function ShopCartPage() {
               </Flex>
             </Box>
           </Box>
-          <Box w={"md"}  boxShadow="base " h="300 ">
+          <Box w={"md"} boxShadow="base " h="300 ">
             <div className="p-5">
               <h1 className="text-2xl font-bold">Order Summary</h1>
-              <Flex justify={"space-between"} marginTop={'5'}  >
+              <Flex justify={"space-between"} marginTop={"5"}>
                 <h1>3 Item</h1>
                 <h1>XX.XX$</h1>
               </Flex>
-              <Flex justify={"space-between"} marginTop={'5'}  >
+              <Flex justify={"space-between"} marginTop={"5"}>
                 <h1>Delivery</h1>
                 <h1>XX.XX$</h1>
               </Flex>
-              <hr className="mt-5"/>
-              <Flex justify={"space-between"} marginTop={'5'} fontWeight={"bold"} fontSize="xl" >
+              <hr className="mt-5" />
+              <Flex
+                justify={"space-between"}
+                marginTop={"5"}
+                fontWeight={"bold"}
+                fontSize="xl"
+              >
                 <h1>Delivery</h1>
                 <h1>XX.XX$</h1>
               </Flex>
-              <Flex justify={'center'} >
+              <Flex justify={"center"}>
                 <Button colorScheme="gray" w={400} className="mt-5">
                   Continue Checkout
                 </Button>

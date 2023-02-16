@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Container,
-  extendTheme,
   Flex,
   Heading,
   IconButton,
@@ -22,7 +21,6 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   BiCart,
   BiDownArrow,
-  BiHeart,
   BiLock,
   BiLogIn,
   BiLogOut,
@@ -44,14 +42,7 @@ const Navbar = () => {
   const user: any = React.useContext(UserContext);
   const [, , removeCookie] = useCookies(["user", "token", "role"]);
   const toast = useCustomToast();
-  const breakpoints = {
-    sm: "320px",
-    md: "768px",
-    lg: "960px",
-    xl: "1200px",
-    "2xl": "1536px",
-  };
-  const theme = extendTheme({ breakpoints });
+
   return (
     <>
       <Container maxW={"8xl"} py={2}>
@@ -60,7 +51,6 @@ const Navbar = () => {
           className={"w-full"}
           justify={"space-between"}
           align={"center"}
-         
         >
           <Link to={"/"}>
             <Flex className="logo" gap={3} align={"center"}>
@@ -70,7 +60,11 @@ const Navbar = () => {
               </Heading>
             </Flex>
           </Link>
-          <Flex className="" fontWeight={"bold"} display={{ base: "none", xl: "flex" }}>
+          <Flex
+            className=""
+            fontWeight={"bold"}
+            display={{ base: "none", xl: "flex" }}
+          >
             <ul className="px-2 text-sm hover:text-gray-500">
               <Link to={""}>Popular for Men</Link>
             </ul>

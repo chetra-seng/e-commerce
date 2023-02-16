@@ -2,7 +2,6 @@ import {
   Button,
   Container,
   Divider,
-  extendTheme,
   Flex,
   FormLabel,
   Heading,
@@ -21,29 +20,32 @@ import { Link, useNavigate } from "react-router-dom";
 import Head from "../components/Head";
 import useCustomToast from "../hooks/useCustomToast";
 
-
 type User = {
-  name: string,
-  id: number
-}
+  name: string;
+  id: number;
+};
 type Data = {
-  token: string,
-  role: string,
-  user: User
-}
+  token: string;
+  role: string;
+  user: User;
+};
 type ResponeM = {
-  code: number,
-  message: string
-}
+  code: number;
+  message: string;
+};
 type LoginResponse = {
-  data: Data,
-  response: ResponeM
+  data: Data;
+  response: ResponeM;
 };
 
 const Login = () => {
-  const baseUrl = "http://localhost:8080/api/v1"
+  const baseUrl = "http://localhost:8080/api/v1";
   const { colorMode } = useColorMode();
-  const [cookie, setCookie, removeCookie] = useCookies(["token", "role", "user"]);
+  const [cookie, setCookie, removeCookie] = useCookies([
+    "token",
+    "role",
+    "user",
+  ]);
   const toast = useCustomToast();
   const navigate = useNavigate();
   const { mutate, isLoading, error } = useMutation({
@@ -51,10 +53,7 @@ const Login = () => {
     mutationFn: async (credential): Promise<LoginResponse> => {
       // TO-DO: Security Vulnerability
       // Exposed unencrypted password
-      const res = await axios.post(
-        `${baseUrl}/auth/login`,
-        credential
-      );
+      const res = await axios.post(`${baseUrl}/auth/login`, credential);
       return res.data;
     },
     onSuccess: (data) => {
@@ -66,10 +65,11 @@ const Login = () => {
         path: "/",
         maxAge: 36000,
       });
-      setCookie("user", data.data.user)
+      setCookie("user", data.data.user);
       toast(data.response.message, "success");
-      data.data.role === '[ROLE_SELLER]' ?
-      navigate("/seller/dashboard") : navigate("/");
+      data.data.role === "[ROLE_SELLER]"
+        ? navigate("/seller/dashboard")
+        : navigate("/");
     },
   });
   const { handleSubmit, register } = useForm();
@@ -84,14 +84,15 @@ const Login = () => {
 
   React.useEffect(() => {
     if (cookie.role === undefined) {
-      removeCookie("role")
-      removeCookie("token")
+      removeCookie("role");
+      removeCookie("token");
     }
     if (cookie.role) {
-      cookie.role === '[ROLE_SELLER]' ?
-      navigate("/seller/dashboard") : navigate("/");
+      cookie.role === "[ROLE_SELLER]"
+        ? navigate("/seller/dashboard")
+        : navigate("/");
     }
-  }, [cookie, navigate]);
+  }, [cookie, navigate, removeCookie]);
 
   return (
     <>

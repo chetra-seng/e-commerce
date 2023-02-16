@@ -1,13 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Head from "../components/Head";
 import Layout from "../components/Layout";
 import ProductCategory from "../components/ProductCategory";
-import { UserContext } from "../contexts/UserContext";
-import { Box, Container, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Container, Flex, Grid, Text } from "@chakra-ui/react";
 import TrendingCard from "../components/TrendingCard";
+import { useQuery } from "react-query";
+import axios from "axios";
 
-const Home = () => {
+const Home: React.FC = () => {
+  const productQuery = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/customer/view-product`
+      );
+      return res.data;
+    },
+  });
+
+  const renderProductByCategory = () => {
+    if (!productQuery.data) return;
+    const products = productQuery.data.data.map((prod: any) => ({
+      id: prod.id,
+      name: prod.name,
+      imageUrl: `${process.env.REACT_APP_API_URL}/resource/load-image/product/${prod.images[0]}`,
+    }));
+
+    return products.map((prod: any) => (
+      <ProductCategory key={prod.id} {...prod} />
+    ));
+  };
+
   return (
     <Layout>
       <Container maxW={"8xl"}>
@@ -18,11 +40,11 @@ const Home = () => {
           alignItems={"center"}
           justify={"space-between"}
           padding={"50"}
-          className='content'
+          className="content"
         >
-          <div style={{ width: "300px" }} className='content-detail'>
+          <div style={{ width: "300px" }} className="content-detail">
             <Text className="text-center" fontWeight={"bold"} fontSize="3xl">
-             WHAT EVER YOU WANT TO SAY...
+              WHAT EVER YOU WANT TO SAY...
             </Text>
             <Text className="text-center">
               Lorem ipsum dolor sit amet consectetur. Eleifend luctus placerat
@@ -30,7 +52,7 @@ const Home = () => {
               nunc.
             </Text>
           </div>
-          <div className="max-w-3xl img" >
+          <div className="max-w-3xl img">
             <img
               src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
               alt=""
@@ -45,12 +67,7 @@ const Home = () => {
           Product Categories
         </Text>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-          <ProductCategory />
-          <ProductCategory />
-          <ProductCategory />
-          <ProductCategory />
-          <ProductCategory />
-          <ProductCategory />
+          {renderProductByCategory()}
         </Grid>
       </Container>
 
