@@ -19,7 +19,7 @@ import { BsImages } from "react-icons/bs";
 import Head from "../../components/Head";
 import DeshboardSidebar from "../../components/seller/DeshboardSidebar";
 
-export default function CategoriesPage() {
+export default function CategoriesSeller() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef<HTMLButtonElement>(null);
 
@@ -27,7 +27,7 @@ export default function CategoriesPage() {
     <>
       <Head title={"Categories"} />
       <Flex>
-        <DeshboardSidebar />
+        <DeshboardSidebar/>
         <Box className="w-5/6">
           <Flex
             flexDir={"column"}
