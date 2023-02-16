@@ -21,22 +21,29 @@ import { Link, useNavigate } from "react-router-dom";
 import Head from "../components/Head";
 import useCustomToast from "../hooks/useCustomToast";
 
-type User = {
-  id: number;
-  name: string;
-  email: string;
-};
 
+type User = {
+  name: string,
+  id: number
+}
+type Data = {
+  token: string,
+  role: string,
+  user: User
+}
+type ResponeM = {
+  code: number,
+  message: string
+}
 type LoginResponse = {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-  user: User;
+  data: Data,
+  response: ResponeM
 };
 
 const Login = () => {
+  const baseUrl = "http://localhost:8080/api/v1"
   const { colorMode } = useColorMode();
-  const [cookie, setCookie] = useCookies(["token", "user"]);
+  const [cookie, setCookie, removeCookie] = useCookies(["token", "role", "user"]);
   const toast = useCustomToast();
   const navigate = useNavigate();
   const { mutate, isLoading, error } = useMutation({
@@ -45,22 +52,24 @@ const Login = () => {
       // TO-DO: Security Vulnerability
       // Exposed unencrypted password
       const res = await axios.post(
-        "http://localhost:8000/api/auth/login",
+        `${baseUrl}/auth/login`,
         credential
       );
       return res.data;
     },
     onSuccess: (data) => {
-      setCookie("token", data.access_token, {
+      setCookie("token", data.data.token, {
         path: "/",
-        maxAge: data.expires_in - 100,
+        maxAge: 36000,
       });
-      setCookie("user", data.user, {
+      setCookie("role", data.data.role, {
         path: "/",
-        maxAge: data.expires_in - 100,
+        maxAge: 36000,
       });
-      toast("Login Success", "success");
-      navigate("/");
+      setCookie("user", data.data.user)
+      toast(data.response.message, "success");
+      data.data.role === '[ROLE_SELLER]' ?
+      navigate("/seller/dashboard") : navigate("/");
     },
   });
   const { handleSubmit, register } = useForm();
@@ -70,12 +79,17 @@ const Login = () => {
   };
 
   if (error) {
-    toast((error as any).response.data.error, "error");
+    toast((error as any).response.data.message, "error");
   }
 
   React.useEffect(() => {
-    if (cookie.user) {
-      navigate("/");
+    if (cookie.role === undefined) {
+      removeCookie("role")
+      removeCookie("token")
+    }
+    if (cookie.role) {
+      cookie.role === '[ROLE_SELLER]' ?
+      navigate("/seller/dashboard") : navigate("/");
     }
   }, [cookie, navigate]);
 
@@ -117,7 +131,7 @@ const Login = () => {
                       type={"password"}
                       id={"password"}
                       required
-                      {...register("password")}
+                      {...register("passwd")}
                     />
                   </Flex>
                   <Button

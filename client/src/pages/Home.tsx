@@ -6,16 +6,11 @@ import ProductCategory from "../components/ProductCategory";
 import { UserContext } from "../contexts/UserContext";
 import { Box, Container, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import TrendingCard from "../components/TrendingCard";
-import { motion } from "framer-motion";
 
 const Home = () => {
   return (
     <Layout>
-      <Container maxW={"8xl"} as={motion.div}
-        transitionDuration={"200ms"}
-        initial={{ opacity: 0, x: -200 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 200 }}>
+      <Container maxW={"8xl"}>
         <Flex
           boxShadow="base"
           p="6"
@@ -45,7 +40,7 @@ const Home = () => {
         </Flex>
       </Container>
 
-      <Container maxW={"8xl"} py={2} >
+      <Container maxW={"8xl"} py={2}>
         <Text className="mt-10 mb-5" fontWeight={"bold"} fontSize="3xl">
           Product Categories
         </Text>

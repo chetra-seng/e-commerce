@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import {Helmet} from "react-helmet";
 
 export default function Head({ title }: any) {
   return (

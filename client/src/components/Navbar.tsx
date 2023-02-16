@@ -42,7 +42,7 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
   const user: any = React.useContext(UserContext);
-  const [, , removeCookie] = useCookies(["user", "token"]);
+  const [, , removeCookie] = useCookies(["user", "token", "role"]);
   const toast = useCustomToast();
   const breakpoints = {
     sm: "320px",
@@ -113,14 +113,14 @@ const Navbar = () => {
             {/* <Link to={"/wishlist"}>
               <BiHeart size={25} />
             </Link> */}
-            <Link to={"/shopcartpage"}>
+            <Link to={"/shoppingcart"}>
               <BiCart size={25} />
             </Link>
             {user ? (
               <Menu>
                 <MenuButton as={Button} variant={"ghost"}>
                   <Flex gap={2} alignItems={"center"}>
-                    <Avatar src={faker.image.cats()} size={"sm"} />
+                    <Avatar src={faker.image.people()} size={"sm"} />
                     {user.name}
                     <BiDownArrow />
                   </Flex>
@@ -140,6 +140,7 @@ const Navbar = () => {
                       onClick={() => {
                         removeCookie("token");
                         removeCookie("user");
+                        removeCookie("role");
                         toast("Logout Success", "success");
                       }}
                     >

@@ -20,7 +20,7 @@ import { BsImages } from "react-icons/bs";
 import Head from "../../components/Head";
 import DeshboardSidebar from "../../components/seller/DeshboardSidebar";
 
-export default function ProductsPage() {
+export default function ProductsSeller() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef<HTMLButtonElement>(null);
   return (
