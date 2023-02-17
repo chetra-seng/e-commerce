@@ -17,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import {
   BiCart,
   BiDownArrow,
@@ -36,6 +35,9 @@ import { faker } from "@faker-js/faker";
 import { useCookies } from "react-cookie";
 import useCustomToast from "../hooks/useCustomToast";
 import { GoThreeBars } from "react-icons/go";
+import logo from "./logo.png";
+
+
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
@@ -52,15 +54,16 @@ const Navbar = () => {
           justify={"space-between"}
           align={"center"}
         >
+          
           <Link to={"/"}>
             <Flex className="logo" gap={3} align={"center"}>
-              <Image src="./logo.png" w={20} />
+              <Image src="logo.png" w={20} />
               <Heading size={"lg"} color={"heading"}>
                 Cool Ecommerce
               </Heading>
             </Flex>
           </Link>
-          <Flex
+          {/* <Flex
             className=""
             fontWeight={"bold"}
             display={{ base: "none", xl: "flex" }}
@@ -77,7 +80,7 @@ const Navbar = () => {
             <ul className="px-2 text-sm hover:text-gray-500">
               <Link to={""}>Most Popular</Link>
             </ul>
-          </Flex>
+          </Flex> */}
           <Flex flexDir={"row"} display={{ base: "none", xl: "flex" }}>
             <Input w={"50"} />
             <Box

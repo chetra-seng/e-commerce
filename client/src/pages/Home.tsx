@@ -15,18 +15,58 @@ const Home: React.FC = () => {
       );
       return res.data;
     },
+    retry: 2,
   });
 
-  const renderProductByCategory = () => {
+  const renderProducts = () => {
     if (!productQuery.data) return;
     const products = productQuery.data.data.map((prod: any) => ({
       id: prod.id,
       name: prod.name,
-      imageUrl: `${process.env.REACT_APP_API_URL}/resource/load-image/product/${prod.images[0]}`,
+      qty: prod.qtu,
+      price: prod.price,
+      imageUrl: prod.images
+        ? `${process.env.REACT_APP_API_URL}/resource/load-image/product/${prod.images[0]}`
+        : "logo.png",
     }));
 
     return products.map((prod: any) => (
-      <ProductCategory key={prod.id} {...prod} />
+      <TrendingCard key={prod.id} {...prod} />
+    ));
+  };
+
+  const categoryQuery = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/customer/category/dropdown?page=0&size=6`
+      );
+      return res.data;
+    },
+    retry: 2,
+  });
+
+  const renderCategory = () => {
+    if (!categoryQuery.data) return;
+    const categories =
+      categoryQuery.data instanceof Object
+        ? categoryQuery.data.data.map((cate: any) => ({
+            id: cate.id,
+            name: cate.name,
+            imageUrl: cate.imageFileName
+              ? `${process.env.REACT_APP_API_URL}/resource/load-image/category/${cate.imageFileName}`
+              : "",
+          }))
+        : categoryQuery.data.map((cate: any) => ({
+            id: cate.id,
+            name: cate.name,
+            imageUrl: cate.imageFileName
+              ? `${process.env.REACT_APP_API_URL}/resource/load-image/category/${cate.imageFileName}`
+              : "",
+          }));
+
+    return categories.map((cate: any) => (
+      <ProductCategory key={cate.id} {...cate} />
     ));
   };
 
@@ -67,7 +107,7 @@ const Home: React.FC = () => {
           Product Categories
         </Text>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-          {renderProductByCategory()}
+          {renderCategory()}
         </Grid>
       </Container>
 
@@ -76,22 +116,7 @@ const Home: React.FC = () => {
           In Trending
         </Text>
         <Grid templateColumns="repeat(4, 1fr)" gap={8}>
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
+          {renderProducts()}
         </Grid>
       </Container>
     </Layout>
@@ -99,3 +124,6 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+function typeOf(data: any) {
+  throw new Error("Function not implemented.");
+}

@@ -8,13 +8,23 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { MdShoppingCart } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const TrendingCard = () => {
+type ProductProps = {
+  id: number;
+  name: string;
+  qty: string,
+  price: number,
+  imageUrl: string;
+};
+
+const TrendingCard: React.FC<ProductProps> = ({id, name, qty, price, imageUrl}) => {
+  const navigate = useNavigate();
   return (
     <>
-      <Link to={"/productdetail"}>
+     
         <Card
+          onClick={() => navigate(`/productdetail?id=${id}`)}
           maxW="sm"
           _hover={{
             shadow:
@@ -22,7 +32,7 @@ const TrendingCard = () => {
           }}
         >
           <CardBody>
-            <Link to={"/login"}>
+            <Link to={"/shoppingcart"}>
               <Icon
                 className="shopicon"
                 as={MdShoppingCart}
@@ -32,24 +42,23 @@ const TrendingCard = () => {
               />
             </Link>
             <Image
-              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              alt="Green double couch with wooden legs"
+              src={imageUrl}
+              alt={name}
+              fallbackSrc="logo.png"
               borderRadius="lg"
             />
             <Stack mt="6" spacing="1">
               <Text color="gray.700" fontSize="xl">
-                $450
+                ${price}
               </Text>
               <Text fontSize={"sm"}>
-                This sofa is perfect for modern tropical spaces, baroque
-                inspired spaces,
+                {name}
               </Text>
-              <Text fontSize={"sm"}>Stock 120</Text>
+              <Text fontSize={"sm"}>Stock {qty}</Text>
             </Stack>
           </CardBody>
           <Divider />
         </Card>
-      </Link>
     </>
   );
 };
