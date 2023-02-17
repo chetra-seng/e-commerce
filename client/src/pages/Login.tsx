@@ -39,7 +39,6 @@ type LoginResponse = {
 };
 
 const Login = () => {
-  const baseUrl = "http://localhost:8080/api/v1";
   const { colorMode } = useColorMode();
   const [cookie, setCookie, removeCookie] = useCookies([
     "token",
@@ -53,7 +52,7 @@ const Login = () => {
     mutationFn: async (credential): Promise<LoginResponse> => {
       // TO-DO: Security Vulnerability
       // Exposed unencrypted password
-      const res = await axios.post(`${baseUrl}/auth/login`, credential);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, credential);
       return res.data;
     },
     onSuccess: (data) => {

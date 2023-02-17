@@ -1,5 +1,5 @@
 import { Card, Box, Text, Image } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Head from "./Head";
 
 type ProductCategoryProps = {
@@ -13,11 +13,12 @@ const ProductCategory: React.FC<ProductCategoryProps> = ({
   name,
   imageUrl,
 }) => {
+  const navigate = useNavigate();
   return (
     <Box>
       <Head title={name} />
-      <Link to={"/categorypage"}>
-        <Card
+     
+        <Card as="a" onClick={() => navigate(`/category/?id=${id}&name=${name}`)}
           w={[100, 180, 240, 280, 320]}
           h={[
             (100 * 2) / 3,
@@ -39,16 +40,15 @@ const ProductCategory: React.FC<ProductCategoryProps> = ({
               (280 * 2) / 3,
               (320 * 2) / 3,
             ]}
-            src={imageUrl}
-            alt={`${name} Image`}
-            fallbackSrc={"donkey.jpeg"}
+            src={imageUrl ? imageUrl : "logo.png"}
+            alt={name}
+            fallbackSrc={"logo.png"}
             borderRadius={5}
           />
           <Text className="text" fontWeight={"bold"}>
             {name}
           </Text>
         </Card>
-      </Link>
     </Box>
   );
 };
